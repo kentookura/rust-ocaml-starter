@@ -6,6 +6,10 @@ edition = "2021"
 [dependencies]
 ocaml = { git = "https://github.com/crackcomm/ocaml-rs", branch = "ocaml5-fortran" }
 
+[dependencies.ocaml-derive]
+git = "https://github.com/crackcomm/ocaml-rs.git"
+branch = "ocaml5-fortran"
+
 [build-dependencies]
 ocaml-build = { git = "https://github.com/crackcomm/ocaml-rs", branch = "ocaml5-fortran", features = [
   "dune",

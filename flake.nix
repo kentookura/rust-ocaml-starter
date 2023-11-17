@@ -14,6 +14,14 @@
         };
 
         rustPkgs = pkgs.rustBuilder.makePackageSet {
+          packageOverrides = pkgs: pkgs.rustBuilder.overrides.all ++ [
+            (pkgs.rustBuilder.rustLib.makeOverride {
+              name = "ocaml-boxroot-sys";
+              overrideAttrs = drv: {
+                buildInputs = drv.buildInputs ++ [ pkgs.ocaml ];
+              };
+            })
+          ];
           rustVersion = "1.70.0";
           packageFun = import ./Cargo.nix;
         };

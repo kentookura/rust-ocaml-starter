@@ -24,7 +24,7 @@ args@{
   ignoreLockHash,
 }:
 let
-  nixifiedLockHash = "12dd8400f61f0472e7053f40eb66d519b9e313eb92061df5edea0eb649ab1fdb";
+  nixifiedLockHash = "ca1de1a7d707548a0b2b069f50b5ac52ecce196d4e4e0ef41e1554155adef046";
   workspaceSrc = if args.workspaceSrc == null then ./. else args.workspaceSrc;
   currentLockHash = builtins.hashFile "sha256" (workspaceSrc + /Cargo.lock);
   lockHashIgnored = if ignoreLockHash
@@ -220,6 +220,7 @@ in
     src = fetchCrateLocal workspaceSrc;
     dependencies = {
       ocaml = (rustPackages."git+https://github.com/crackcomm/ocaml-rs".ocaml."1.0.0-beta.5" { inherit profileName; }).out;
+      ocaml_derive = (buildRustPackages."git+https://github.com/crackcomm/ocaml-rs".ocaml-derive."1.0.0-beta.5" { profileName = "__noProfile"; }).out;
     };
     buildDependencies = {
       ocaml_build = (buildRustPackages."git+https://github.com/crackcomm/ocaml-rs".ocaml-build."1.0.0-beta.5" { profileName = "__noProfile"; }).out;
